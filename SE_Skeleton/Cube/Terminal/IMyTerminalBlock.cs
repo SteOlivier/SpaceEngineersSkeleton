@@ -1,14 +1,14 @@
-﻿using SE_Skeleton.Terminal.Container;
+﻿using SE_Skeleton.Cube.Terminal.Container;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SE_Skeleton
+namespace SE_Skeleton.Cube
 {
     /// <summary>
     /// IMyTerminalBlock is base class for every terminal block, all of the block will have following properties and methods
     /// </summary>
-    public interface IMyTerminalBlock
+    public interface IMyTerminalBlock : IMyCubeBlock
     {
         string CustomName { get; set; }
         string CustomNameWithFaction  { get; set; }
@@ -29,10 +29,14 @@ namespace SE_Skeleton
         void SetCustomName(string text);
         void SetCustomName(StringBuilder text);
         [Obsolete]
-        IContainerBlock GetInventory(int itemIndex);
+        IMyCargoContainer GetInventory(int itemIndex);
 
         void ApplyAction(string Action);
 
+        void GetActions(List<Object> Actions);
+        Object GetActionWithName(string name);
+
+        //void GetBlocksOfType<T>(List<IMyTerminalBlock> blocks, Func<IMyTerminalBlock, bool> collect = null);
 
 
         //private bool _hasLocalPlayerAccess;

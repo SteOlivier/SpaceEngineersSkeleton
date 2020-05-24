@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SE_Skeleton.Terminal.Functional.Ship
+namespace SE_Skeleton.Cube.Terminal.Functional.Ship
 {
     public interface IMyShipController : IMyFunctionalBlock
     {

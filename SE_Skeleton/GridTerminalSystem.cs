@@ -1,4 +1,5 @@
-﻿using SE_Skeleton.Terminal;
+﻿using SE_Skeleton.Cube;
+using SE_Skeleton.Cube.Terminal;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -56,6 +57,11 @@ namespace SE_Skeleton
         {
             if (_getBlockGroupName.ContainsKey(groupName)) return _getBlockGroupName[groupName];
             return null;
+        }
+
+        public static void GetBlocksOfType<T>(List<IMyTerminalBlock> typeObjectReturn)
+        {
+            // I'm not going to implement this class just because...
         }
 
         //public GridTerminalSystem()

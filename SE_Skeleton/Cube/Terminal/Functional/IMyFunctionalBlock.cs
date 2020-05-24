@@ -1,9 +1,9 @@
-﻿using SE_Skeleton.Terminal.Functional.TextSurface;
+﻿using SE_Skeleton.Cube.Terminal.Functional.TextSurface;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SE_Skeleton.Terminal
+namespace SE_Skeleton.Cube.Terminal
 {
     public interface IMyFunctionalBlock : IMyTerminalBlock
     {

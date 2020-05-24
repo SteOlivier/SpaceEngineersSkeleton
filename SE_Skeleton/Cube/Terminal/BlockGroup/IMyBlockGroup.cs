@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SE_Skeleton.Terminal
+namespace SE_Skeleton.Cube.Terminal
 {
     /// <summary>
     /// IMyTerminalBlock is base class for every terminal block, all of the block will have following properties and methods
@@ -18,8 +18,8 @@ namespace SE_Skeleton.Terminal
         float Radius { get; } // Don't know if this really exists in the class
 
         void GetBlocks(List<IMyTerminalBlock> NameOfBlocks);
-        [Obsolete]
-        List<IMyTerminalBlock> GetBlocks();
+        //[Obsolete]
+        //List<IMyTerminalBlock> GetBlocks();
         //public IMyBlockGroup()
         //{
         //    Blocks = new List<IMyTerminalBlock>();

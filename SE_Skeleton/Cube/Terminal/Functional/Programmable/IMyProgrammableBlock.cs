@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SE_Skeleton.Terminal.Functional.Programmable
+namespace SE_Skeleton.Cube.Terminal.Functional.Programmable
 {
     public interface IMyProgrammableBlock : IMyFunctionalBlock
     {
