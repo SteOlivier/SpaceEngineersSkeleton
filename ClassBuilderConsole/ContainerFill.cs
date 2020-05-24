@@ -12,6 +12,8 @@ using SE_Skeleton.Cube.Terminal.Functional.Timer;
 
 namespace ClassBuilderConsole
 {
+
+    #region container fill original
     /// <summary>
     /// At the program file the void should be removed
     /// The Echo method should be removed
@@ -168,6 +170,7 @@ namespace ClassBuilderConsole
 
         }
     }
+    #endregion
 
     /// <summary>
     /// At the program file the void should be removed
@@ -241,7 +244,7 @@ namespace ClassBuilderConsole
 
             //var group = this.GridTerminalSystem.GetBlockGroupWithName(groupName);
             var group = GridTerminalSystem.GetBlockGroupWithName(groupName);
-            if (group == null)
+            if (group == null && groupName != "-1")
             {
                 this.Echo("No Group named '" + groupName + "'");
             }
@@ -251,6 +254,8 @@ namespace ClassBuilderConsole
             }
 
             var groupBlocks = new List<IMyTerminalBlock>();
+            var shipContainerContents = new List<string>();
+
             if (group == null)
             {
                 //
@@ -270,17 +275,39 @@ namespace ClassBuilderConsole
                 //group = cargoContainers;
             }
             if (group != null) group.GetBlocks(groupBlocks);
-            for (int i = 0; i < groupBlocks.Count; i++)
+            for (int kk = 0; kk < groupBlocks.Count; kk++)
             {
-                var block = groupBlocks[i];
-                if (!groupBlocks[i].GetType().ToString().Contains("MyCargoContainer") &&
-                    (!groupBlocks[i].GetType().ToString().Contains("MyShipDrill")) &&
-                    (!groupBlocks[i].GetType().ToString().Contains("MyCockpit")) &&
-                    (!groupBlocks[i].GetType().ToString().Contains("MyShipConnector")))
+                var block = groupBlocks[kk];
+                if (!groupBlocks[kk].GetType().ToString().Contains("MyCargoContainer") &&
+                    (!groupBlocks[kk].GetType().ToString().Contains("MyShipDrill")) &&
+                    (!groupBlocks[kk].GetType().ToString().Contains("MyCockpit")) &&
+                    (!groupBlocks[kk].GetType().ToString().Contains("MyShipConnector")))
                         Echo(block.GetType().ToString());
 
-                usedVolume += (float)block.GetInventory(0).CurrentVolume;
-                maxVolume  += (float)block.GetInventory(0).MaxVolume;
+                var blockInventory = block.GetInventory(0);
+                usedVolume += (float)blockInventory.CurrentVolume;
+                maxVolume  += (float)blockInventory.MaxVolume;
+                var myInventoryItem = new List<MyInventoryItem>();
+                blockInventory.GetItems(myInventoryItem);
+                for (int ii = 0; ii < myInventoryItem.Count; ii++)
+                {
+                    //if (!shipContainerContents.Contains(myInventoryItem[ii].Content.SubtypeName.ToString())) // some method that used to work to get to the subtypes, investigate where it moved to
+
+                    var itemString = myInventoryItem[ii].ToString();
+                    if (itemString.Contains("MyObjectBuilder_Ore"))
+                    {
+                        var indexOf = itemString.IndexOf("MyObjectBuilder_Ore/");
+                        var sLength = itemString.Length;
+                        itemString = itemString.Substring(indexOf + 20, sLength - indexOf - 20);
+                    }
+                    else continue;
+                    if (!shipContainerContents.Contains(itemString))
+                    {
+                        shipContainerContents.Add(itemString);
+                    }
+                }
+
+
             }
 
             Echo("Used/Max" + usedVolume + ": " + maxVolume);
@@ -294,11 +321,20 @@ namespace ClassBuilderConsole
                 {
                     if (pctUsed >= 100 - x * 12)
                     {
-                        displayText += "[ <=========> ]\n";
+                        
+                        displayText += "[ <=========> ] ";
                     }
                     else
                     {
-                        displayText += "|                          |\n";
+                        displayText += "|                          | ";
+                    }
+                    if (shipContainerContents.Count > x)
+                    {
+                        displayText += shipContainerContents[x] + "\n";
+                    }
+                    else
+                    {
+                        displayText += "\n";
                     }
                 }
 
@@ -324,6 +360,12 @@ namespace ClassBuilderConsole
                 var roundfill = (int)Math.Round(fill * 100.0 / roundpercent) * roundpercent;
                 var log = "Capacity: " + (fill).ToString("P2");
                 Echo(log);
+            }
+
+            Echo("Mined resources: ");
+            for (int ii = 0; ii < shipContainerContents.Count; ii++)
+            {
+                Echo("\t" + shipContainerContents[ii]);
             }
 
             /// Added region

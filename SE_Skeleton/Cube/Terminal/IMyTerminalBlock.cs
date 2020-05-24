@@ -1,4 +1,5 @@
-﻿using SE_Skeleton.Cube.Terminal.Container;
+﻿using SE_Skeleton.Cube.Terminal;
+using SE_Skeleton.Cube.Terminal.Container;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,9 @@ namespace SE_Skeleton.Cube
         string DetailedInfo           { get; set; }
 
         bool ShowOnHUD { get; set; }
+
+        //[Obsolete]
+        //IContentType Content { get; }
 
         bool HasLocalPlayerAccess();
         //{

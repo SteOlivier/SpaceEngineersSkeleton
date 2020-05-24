@@ -9,5 +9,8 @@ namespace SE_Skeleton.Cube.Terminal.Container
     {
         float CurrentVolume { get; }
         float MaxVolume { get; }
+
+        //Don't know if this is the correct return type
+        List<IMyTerminalBlock> GetItems(List<MyInventoryItem> myInventoryItem);
     }
 }
