@@ -317,9 +317,10 @@ namespace ClassBuilderConsole
             {
 
                 string displayText = String.Format("Overall: {0}%\n", (int)pctUsed);
-                for (int x = 1; x <= 13; x++)
+                var progressParts = 12;
+                for (int x = 1; x <= progressParts+1; x++)
                 {
-                    if (pctUsed >= 112 + (100*x)/12)
+                    if (pctUsed >= 100 + progressParts - (100*x)/ progressParts)
                     {
                         
                         displayText += "[ <=========> ] ";
@@ -328,9 +329,9 @@ namespace ClassBuilderConsole
                     {
                         displayText += "|                          | ";
                     }
-                    if (shipContainerContents.Count > x)
+                    if (shipContainerContents.Count+1 > x)
                     {
-                        displayText += shipContainerContents[x] + "\n";
+                        displayText += shipContainerContents[x-1] + "\n";
                     }
                     else
                     {
