@@ -317,9 +317,9 @@ namespace ClassBuilderConsole
             {
 
                 string displayText = String.Format("Overall: {0}%\n", (int)pctUsed);
-                for (int x = 0; x <= 12; x++)
+                for (int x = 1; x <= 13; x++)
                 {
-                    if (pctUsed >= 100 - x * 12)
+                    if (pctUsed >= 112 + (100*x)/12)
                     {
                         
                         displayText += "[ <=========> ] ";
