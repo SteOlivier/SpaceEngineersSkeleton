@@ -1,3 +1,6 @@
+# Forward
+Have you ever tried to write a program only to find someone has done it, once you started? Yeah that sucks... Anyway, if you are looking for a really good and comprehensive Space Engineers programming IDE in VS, go to this github project: [https://github.com/malware-dev/MDK-SE](Malware's Devkit for Space Engineers)
+
 # SpaceEngineersSkeleton V 0.001.002
 This is just the base structure within space engineers. The idea is that you can create a mockup class and test a mockup solution for your code. The IDE of VS should help you to create the structure of your program and classes of ingame types.
 
